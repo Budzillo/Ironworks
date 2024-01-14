@@ -1,1 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.center{text-align: center;}
+.div-table{margin: 10px;} 
+.table-header{text-align: center;}
+.right {position: absolute;right: 0px;}
+.title-center {
+    display: flex;
+    justify-content: center; /* align horizontal */
+    align-items: center; /* align vertical */
+}
+.mat-dialog-actions {
+  // align buttons to right as shown in Material Design guide
+  justify-content: flex-end;
+
+.mat-button {
+  &:not(:first-child) {
+      margin-left: 1em;
+    }
+  }
+}
+
+.flex-spacer {
+  flex: 1 1 auto;
+}
+.parent {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  margin: 10px;
+}

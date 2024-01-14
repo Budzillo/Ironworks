@@ -1,0 +1,9 @@
+<div class="parent">
+    <h2 mat-dialog-title>{{title}}</h2>
+    <mat-dialog-content>{{text}}</mat-dialog-content>
+    <mat-dialog-actions align="center" style="width: 100%;">
+        <button mat-raised-button type="button" align="start" class="Save-btn" (click)="yes()">{{yesText}}</button>
+            <span class="flex-spacer"></span>
+        <button mat-raised-button type="button" align="end" class="Discard-btn" (click)="no()">{{noText}}</button> 
+    </mat-dialog-actions>
+</div>

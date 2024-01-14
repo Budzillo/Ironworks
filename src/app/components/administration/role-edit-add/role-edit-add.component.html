@@ -1,0 +1,43 @@
+<div class="parent">
+    <div layout="col">
+        <div layout="row">
+            <mat-form-field>
+                <mat-label>Nazwa</mat-label>
+                <input matInput placeholder="Wpisz nazwę" [(ngModel)]="role.name">
+            </mat-form-field>
+        </div>
+        <div layout="row">
+            <mat-form-field>
+                <mat-label>Wybierz uprawnienie</mat-label>
+                <mat-select  multiple="false" [(ngModel)]="selectedPermission" panelWidth="250" style="width: 250px;">
+                    <mat-option *ngFor="let permission of permissions" [value]="permission">{{permission.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div layout="row">
+            <button mat-button (click)="insertPermission()" style="text-align: center;">Dodaj uprawnienie</button>
+        </div>    
+    </div>
+    <div layout="col">
+        <div layout="row">
+            <p style="text-align: center;">
+                Tabela uprawnień
+            </p>
+        </div>
+        <div layout="row">
+            <table style="max-height: 200px;">
+                <ng-container *ngFor="let rolePermission of role.rolePermissions">
+                    <tr>
+                        <td>{{rolePermission.permissionName}}</td>                        
+                        <td><button mat-button (click)="removePermission(rolePermission)">USUŃ</button></td>                        
+                    </tr>
+                </ng-container>
+            </table>                
+        </div>
+    </div>
+</div>
+<div mat-dialog-actions align="center" style="width: 100%;">
+        <button mat-raised-button type="button" align="start" class="Save-btn" (click)="saveRole()">Zapisz</button>
+        <span class="flex-spacer"></span>
+        <button mat-raised-button type="button" align="end" class="Discard-btn" (click)="cancel()">Anuluj</button>    
+</div>

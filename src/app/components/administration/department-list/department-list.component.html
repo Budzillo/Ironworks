@@ -1,0 +1,34 @@
+<div>
+    <h2 class="table-header">
+        Tabela działów
+    </h2>
+</div>
+<div class="div-table">
+    <table mat-table [dataSource]="departments" class="mat-elevation-z8">
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Nazwa </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+          <ng-container matColumnDef="edit">
+            <th mat-header-cell *matHeaderCellDef> Edytuj </th>
+            <td mat-cell *matCellDef="let element"> 
+                <button mat-mini-fab class="small-icon-button" (click)="updateDepartment(element)">
+                    <mat-icon>edit</mat-icon>
+                </button>
+             </td>
+        </ng-container>
+        <ng-container matColumnDef="delete">
+            <th mat-header-cell *matHeaderCellDef> Usuń </th>
+            <td mat-cell *matCellDef="let element"> 
+                <button mat-mini-fab class="small-icon-button" (click)="deleteDepartment(element.departmentId)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+             </td>
+        </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>
+<div mat-dialog-actions align="end" style="margin: 10px;">
+    <button mat-raised-button (click)="insertDepartment()">Dodaj dział</button>
+</div>

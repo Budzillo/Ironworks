@@ -1,0 +1,155 @@
+<div class="parent">
+    <div layout="row">
+        <div layout="col">       
+            <div layout="row">
+                <mat-form-field>
+                    <mat-label>Wybierz użytkownika:</mat-label>
+                    <mat-select #matSelectUser  multiple="false" [(ngModel)]="sample.userId"  (selectionChange)="changeUser($event)" required="true" panelWidth="250" style="width: 250px;">
+                        <mat-option *ngFor="let user of users" [value]="user.userId">{{user.firstName}} {{user.lastName}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div layout="row">
+                <mat-form-field>
+                    <mat-label>Wybierz asortyment:</mat-label>
+                    <mat-select #matSelectAssortment multiple="false" [(ngModel)]="sample.assortmentId" (selectionChange)="changeAssortment($event)" required="true" panelWidth="250" style="width: 250px;">
+                        <mat-option  *ngFor="let assortment of assortments" [value]="assortment.assortmentId">{{assortment.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div layout="row">
+                <mat-form-field>
+                    <mat-label>Wybierz surowiec:</mat-label>
+                    <mat-select #matSelectMaterial (selectionChange)="changeMaterial($event)" multiple="false" [(ngModel)]="sample.materialId" required="true" panelWidth="250" style="width: 250px;">
+                        <mat-option  *ngFor="let material of materials" [value]="material.materialId">{{material.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div layout="row">
+                <mat-form-field>
+                    <mat-label>Wybierz pozycję wagi:</mat-label>
+                    <mat-select #matSelectCarWeightPosition (selectionChange)="changeCarWeightPosition($event)" multiple="false" [(ngModel)]="sample.carWeightPositionId" required="true" panelWidth="250" style="width: 250px;">
+                        <mat-option  *ngFor="let carWeightPosition of carWeightPositions" [value]="carWeightPosition.carWeightPositionId">{{carWeightPosition.number}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div layout="col">
+            <div layout="row">
+                <mat-form-field>
+                    <mat-label>Opis</mat-label>
+                    <textarea matInput [(ngModel)]="sample.attentions"></textarea>
+                </mat-form-field>
+            </div>
+            <div layout="row">
+                <mat-form-field>
+                    <mat-label>Wybierz zmianę:</mat-label>
+                    <mat-select (selectionChange)="changeChange($event)" multiple="false" [(ngModel)]="sample.change" required="true" panelWidth="250" style="width: 250px;">
+                        <mat-option [value]="1">1</mat-option>
+                        <mat-option [value]="2">2</mat-option>
+                        <mat-option [value]="3">3</mat-option>
+                        <mat-option [value]="4">4</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div layout="row">
+                <mat-form-field>
+                    <mat-label>Kontrolna:</mat-label>
+                    <mat-select (selectionChange)="changeIsControl($event)" multiple="false" [(ngModel)]="sample.isControl" required="true" panelWidth="250" style="width: 250px;">
+                        <mat-option [value]="true">TAK</mat-option>
+                        <mat-option [value]="false">NIE</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div layout="row">
+                <mat-form-field>
+                    <mat-label>Waga[kg]</mat-label>
+                    <input matInput [(ngModel)]="sample.weight" (ngModelChange)="changeWeight(sample.weight)">
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+    <div layout="row">
+        <div layout="col">
+            <div layout="row" style="margin: 20px;">
+                <h2 style="text-align: center;">Tabela pierwiastków chemicznych</h2>
+            </div>
+            <div layout="row">
+                <mat-form-field style="margin: 10px;">
+                    <mat-label>Wybierz pierwiastek chemiczny</mat-label>
+                    <mat-select  multiple="false" [(ngModel)]="selectedChemicalElement" panelWidth="250" style="width: 250px;" required="true">
+                        <mat-option *ngFor="let chemicalElement of chemicalElements" [value]="chemicalElement">{{chemicalElement.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <button mat-raised-button type="button" style="margin: 10px;" (click)="addSampleChemicalElement()">Dodaj</button>          
+            </div>
+            <div layout="row">
+                <table style="max-height: 200px;width: 400px;" class="mat-elevation-z8">
+                    <tr>
+                        <th>Lp</th>
+                        <th>Nazwa</th>
+                        <th>Wartość</th>
+                        <th>Usuń</th>
+                    </tr>
+                    <ng-container *ngFor="let sampleChemicalElement of sample.sampleChemicalElements">
+                        <tr>
+                            <td style="text-align: center;">{{sampleChemicalElement.ordinalNumber}}</td>                        
+                            <td style="text-align: center;">{{sampleChemicalElement.chemicalElementName}}</td>                        
+                            <td style="text-align: center;">
+                                <mat-form-field [style.width.px]=100>
+                                    <mat-label>Wartość</mat-label>
+                                    <input matInput [(ngModel)]="sampleChemicalElement.value">
+                                </mat-form-field>
+                            </td>                                                
+                            <td style="text-align: center;"><button mat-button (click)="removeSampleChemicalElement(sampleChemicalElement)">USUŃ</button></td>                        
+                        </tr>
+                    </ng-container>
+                </table>                
+            </div>
+        </div>
+        <div layout="col">
+            <div layout="row" style="margin: 20px;">
+                <h2 style="text-align: center;">Tabela związków chemicznych</h2>
+            </div>
+            <div layout="row">
+                <mat-form-field style="margin: 10px;">
+                    <mat-label>Wybierz związek chemiczny</mat-label>
+                    <mat-select  multiple="false" [(ngModel)]="selectedChemicalCompound" panelWidth="250" style="width: 250px;" required="true">
+                        <mat-option *ngFor="let chemicalCompound of chemicalCompounds" [value]="chemicalCompound">{{chemicalCompound.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <button mat-raised-button type="button" style="margin: 10px;" (click)="addSampleChemicalCompound()">Dodaj</button>          
+            </div>
+            <div layout="row">
+                <table style="max-height: 200px;width: 400px;" class="mat-elevation-z8">
+                    <tr>
+                        <th>Lp</th>
+                        <th>Nazwa</th>
+                        <th>Wartość</th>
+                        <th>Usuń</th>
+                    </tr>
+                    <ng-container *ngFor="let sampleChemicalCompound of sample.sampleChemicalCompounds">
+                        <tr>
+                            <td style="text-align: center;">{{sampleChemicalCompound.ordinalNumber}}</td>                        
+                            <td style="text-align: center;">{{sampleChemicalCompound.chemicalCompoundName}}</td>                        
+                            <td style="text-align: center;">
+                                <mat-form-field [style.width.px]=100>
+                                    <mat-label>Wartość</mat-label>
+                                    <input matInput [(ngModel)]="sampleChemicalCompound.value">
+                                </mat-form-field>
+                            </td>                                                
+                            <td style="text-align: center;"><button mat-button (click)="removeSampleChemicalCompound(sampleChemicalCompound)">USUŃ</button></td>                        
+                        </tr>
+                    </ng-container>
+                </table> 
+            </div>
+        </div>
+    </div>
+</div>
+<div>    
+    <div mat-dialog-actions align="center" style="width: 100%;">
+        <button mat-raised-button type="button" style="margin-left: 20px;" class="Save-btn" (click)="saveSample()">Zapisz</button>
+        <span class="flex-spacer"></span>
+        <button mat-raised-button type="button" style="margin-right: 20px;" class="Discard-btn" (click)="cancel()">Zamknij</button>
+    </div>
+</div>

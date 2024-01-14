@@ -1,0 +1,13 @@
+<div class="parent">
+    <div layout="row">
+        <mat-form-field>
+            <mat-label>Nazwa</mat-label>
+            <input matInput [(ngModel)]="materialGroup.name" required="true">
+        </mat-form-field>    
+    </div>
+    <div mat-dialog-actions align="center" style="width: 100%;">
+        <button mat-raised-button type="button" align="start" class="Save-btn" (click)="saveMaterialGroup()">Zapisz</button>
+            <span class="flex-spacer"></span>
+        <button mat-raised-button type="button" align="end" class="Discard-btn" (click)="cancel()">Anuluj</button>    
+    </div>    
+</div>

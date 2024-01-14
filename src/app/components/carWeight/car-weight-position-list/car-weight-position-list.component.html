@@ -1,0 +1,85 @@
+<div layout="row">
+    <div layout="col">
+        <mat-form-field style="margin: 10px;">
+            <mat-label>Wybierz wagę</mat-label>
+            <mat-select  multiple="false" [(ngModel)]="selectedCarWeightId" panelWidth="250" style="width: 250px;" required="true">
+                <mat-option *ngFor="let carWeight of carWeights" [value]="carWeight.carWeightId">{{carWeight.name}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field style="margin: 10px;">
+            <mat-label>Wybierz datę początkową</mat-label>
+            <input matInput [(ngModel)]="dateStart" [matDatepicker]="datePickerStart" required="true">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="datePickerStart"></mat-datepicker-toggle>
+            <mat-datepicker  #datePickerStart></mat-datepicker>
+          </mat-form-field>          
+        <mat-form-field style="margin: 10px;">
+            <mat-label>Wybierz datę końcową</mat-label>
+            <input matInput [(ngModel)]="dateEnd" [matDatepicker]="datePickerEnd" required="true">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="datePickerEnd"></mat-datepicker-toggle>
+            <mat-datepicker  #datePickerEnd></mat-datepicker>
+        </mat-form-field>
+        <button mat-raised-button type="button" style="margin: 10px;" (click)="showRecords()">Pokaż</button>          
+    </div>
+</div>
+<div>
+    <h2 class="table-header">
+        Tabela pozycji wagi samochodowej
+    </h2>
+</div>
+<div class="div-table">
+    <table mat-table [dataSource]="carWeightPositions" class="mat-elevation-z8">
+        <ng-container matColumnDef="carWeightName">
+            <th mat-header-cell *matHeaderCellDef> Waga </th>
+            <td mat-cell *matCellDef="let element"> {{element.carWeightName}} </td>
+        </ng-container>
+        <ng-container matColumnDef="assortmentName">
+            <th mat-header-cell *matHeaderCellDef> Asortyment </th>
+            <td mat-cell *matCellDef="let element"> {{element.assortmentName}} </td>
+        </ng-container>
+        <ng-container matColumnDef="contractorName">
+            <th mat-header-cell *matHeaderCellDef> Dostawca </th>
+            <td mat-cell *matCellDef="let element"> {{element.contractorName}} </td>
+        </ng-container>
+        <ng-container matColumnDef="customer">
+            <th mat-header-cell *matHeaderCellDef> Odbiorca </th>
+            <td mat-cell *matCellDef="let element"> {{element.customer}} </td>
+        </ng-container>
+        <ng-container matColumnDef="number">
+            <th mat-header-cell *matHeaderCellDef> Numer </th>
+            <td mat-cell *matCellDef="let element"> {{element.number}} </td>
+        </ng-container>
+        <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef> Data </th>
+            <td mat-cell *matCellDef="let element"> {{element.date | date:'dd-MM-yyyy HH:mm'}} </td>
+        </ng-container>
+        <ng-container matColumnDef="operator">
+            <th mat-header-cell *matHeaderCellDef> Operator </th>
+            <td mat-cell *matCellDef="let element"> {{element.operator}} </td>
+        </ng-container>
+        <ng-container matColumnDef="weight1Value">
+            <th mat-header-cell *matHeaderCellDef> Wartość pierwszej wagi[KG] </th>
+            <td mat-cell *matCellDef="let element"> {{element.weight1Value}} </td>
+        </ng-container>
+        <ng-container matColumnDef="weight2Value">
+            <th mat-header-cell *matHeaderCellDef> Wartość drugiej wagi[KG]  </th>
+            <td mat-cell *matCellDef="let element"> {{element.weight2Value}} </td>
+        </ng-container>
+        <ng-container matColumnDef="massNetto">
+            <th mat-header-cell *matHeaderCellDef> Masa Netto </th>
+            <td mat-cell *matCellDef="let element"> {{element.massNetto}} </td>
+        </ng-container>
+        <ng-container matColumnDef="massAssortmentNetto">
+            <th mat-header-cell *matHeaderCellDef> Masa Asortymentu Netto </th>
+            <td mat-cell *matCellDef="let element"> {{element.massAssortmentNetto}} </td>
+        </ng-container>
+        <ng-container matColumnDef="netto">
+            <th mat-header-cell *matHeaderCellDef> Netto </th>
+            <td mat-cell *matCellDef="let element"> {{element.netto}} </td>
+        </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>
+

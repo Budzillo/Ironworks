@@ -1,0 +1,29 @@
+<div style="position: fixed; top:45%;left: 45%; border: 1px solid;">
+    <div style="margin: 5px;">
+        <div layout="row">
+            <p style="text-align: center;">
+                Zaloguj się do systemu
+            </p>
+        </div>
+        <div layout="row">
+            <mat-form-field>
+                <mat-label>Login</mat-label>
+                <input matInput [(ngModel)]="login" required="true" (ngModelChange)="changeLoginValues()">
+            </mat-form-field>
+        </div>
+        <div layout="row">
+            <mat-form-field>
+                <mat-label>Hasło</mat-label>
+                <input type="password" matInput [(ngModel)]="password" required="true" (ngModelChange)="changeLoginValues()">
+            </mat-form-field>
+        </div>
+        <div layout="row">
+            <button mat-button style="position: relative; left: 30%;" (click)="tryLogin()">Zaloguj</button>
+        </div>
+        <div layout="row" *ngIf="loggingService.loggingModel.isLoggingError">
+            <p style="color: red; text-align: center; margin-top: 5px;">
+                Błąd podczas logowania
+            </p>
+        </div>
+    </div>
+</div>

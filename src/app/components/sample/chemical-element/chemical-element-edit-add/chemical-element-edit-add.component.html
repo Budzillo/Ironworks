@@ -1,0 +1,11 @@
+<div mat-dialog-content align="center">
+    <mat-form-field>
+        <mat-label>Nazwa</mat-label>
+        <input matInput placeholder="Wpisz nazwę" [(ngModel)]="chemicalElement.name">
+    </mat-form-field>
+</div>
+<div mat-dialog-actions align="center" style="width: 100%;">
+        <button mat-raised-button type="button" align="start" class="Save-btn" (click)="saveChemicalElement()">Zapisz</button>
+        <span class="flex-spacer"></span>
+        <button mat-raised-button type="button" align="end" class="Discard-btn" (click)="cancel()">Anuluj</button>    
+</div>

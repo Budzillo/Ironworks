@@ -1,0 +1,33 @@
+import { Assortment } from "./assortment.model";
+import { CarWeightPosition } from "./carWeightPosition.model";
+import { Material } from "./material.model";
+import { SampleChemicalCompound } from "./sampleChemicalCompound.model";
+import { SampleChemicalElement } from "./sampleChemicalElement.model";
+import { SampleHistory } from "./sampleHistory.model";
+import { User } from "./user.model";
+export class Sample{
+    sampleId:number = 0;
+    type:number = 0;
+    materialId:number = 0;
+    materialName:string = "";
+    date?:Date;
+    dateInsert:Date = new Date();
+    dateLastEdit:Date = new Date();
+    assortmentId:number = 0;
+    assortmentName:string = "";
+    isControl:boolean = false;
+    change:number = 0;
+    weight:number = 0;
+    attentions:string = "";
+    userId:number = 0;
+    userFullName:string = "";
+    carWeightPositionId:number = 0;
+    carWeightPositionNumber:string = "";
+    carWeightPosition:CarWeightPosition = new CarWeightPosition();
+    material:Material = new Material();
+    user:User = new User();
+    assortment = new Assortment();
+    sampleChemicalCompounds:SampleChemicalCompound[] = [];
+    sampleChemicalElements:SampleChemicalElement[] = [];
+    sampleHistories:SampleHistory[] = [];
+}
