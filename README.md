@@ -1,3 +1,5 @@
+Adres URL nagrania do prezentacji działania aplikacji 
+https://polslpl-my.sharepoint.com/:v:/g/personal/piotbud066_student_polsl_pl/EVnlsYmd9ipKt4Y0m70kib8B_6uAS-jszErkeRrL4j7pTw?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=4Ytcks
 # IronworksUI
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.0.
